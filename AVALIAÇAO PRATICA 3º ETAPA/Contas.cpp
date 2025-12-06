@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 
+
+
 	struct Conta {
 	    int numero;
 	    char titular[50];
@@ -12,7 +14,8 @@
 	    struct Conta c;
 	    int ult = 0;
 	
-	    rewind(arq);
+	    rewind(arq); 
+	    
 	    while (fread(&c, sizeof(struct Conta), 1, arq) == 1) {
 	        ult = c.numero;
 	    }
@@ -50,18 +53,18 @@
 	    char seIn[20];            
 
     do {
-        printf("\nBem vindo ao banco de ITAMBACURI\n");
+        printf("\nBem vindo ao BANCO DE ITAMBACURI\n\n");
         printf("1 - Criar conta\n");
         printf("2 - Extrato\n");
         printf("3 - Deposito\n");
         printf("4 - Saque\n");
         printf("5 - Transferencia\n");
         printf("6 - Listar contas\n");
-        printf("7 - Sair\n");
+        printf("7 - Sair\n\n");
         printf("Escolha: ");
         scanf("%d", &op);
 
-        // Criar conta
+       
         if (op == 1) {
             c.numero = genNum(arq);
             c.saldo = 0;
@@ -75,7 +78,7 @@
             printf("Conta criada! Numero: %d\n", c.numero);
         }
 
-        // Extrato
+        
         else if (op == 2) {
             printf("Numero da conta: ");
             scanf("%d", &n1);
@@ -88,7 +91,7 @@
             }
         }
 
-        // Depósito
+        
         else if (op == 3) {
         	
 	            printf("Numero da conta: ");
@@ -107,7 +110,7 @@
             }
         }
 
-        // Saque
+        
         else if (op == 4) {
             printf("Numero da conta: ");
             scanf("%d", &n1);
@@ -122,19 +125,21 @@
                     fwrite(&c, sizeof(struct Conta), 1, arq);
                     printf("Saque realizado!\n");
                 } else {
+                	
                     printf("Saldo insuficiente.\n");
                 }
             } else {
+            	
                 printf("Conta nao encontrada.\n");
             }
         }
 
-        // Transferência
+        
         else if (op == 5) {
-            printf("Conta origem: ");
+            printf("Conta de origem: ");
             scanf("%d", &n1);
 
-            printf("Conta destino: ");
+            printf("Conta de destino: ");
             scanf("%d", &n2);
 
             printf("Valor da transferencia: ");
@@ -166,7 +171,8 @@
             printf("Transferencia concluida!\n");
         }
 
-        // Listagem 
+
+        
         else if (op == 6) {
             printf("Digite a senha: ");
             scanf("%s", seIn);
@@ -176,7 +182,7 @@
                 continue;
             }
             rewind(arq);
-            printf("\nCONTAS - BANCO DE ITAMBACURI\n");
+            printf("\nCONTAS CADASTRADAS\n");
 
             while (fread(&c, sizeof(struct Conta), 1, arq) == 1) {
                 printf("Conta %d | Titular: %s | Saldo: R$ %.2f\n",
