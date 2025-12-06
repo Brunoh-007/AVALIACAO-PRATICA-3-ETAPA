@@ -1,29 +1,29 @@
 #include <stdio.h>
 #include <string.h>
 
-struct Conta {
-    int numero;
-    char titular[50];
-    float saldo;
+	struct Conta {
+	    int numero;
+	    char titular[50];
+	    float saldo;
 };
 
 
-int genNum(FILE *arq) {
-    struct Conta c;
-    int ult = 0;
-
-    rewind(arq);
-    while (fread(&c, sizeof(struct Conta), 1, arq) == 1) {
-        ult = c.numero;
-    }
-    return ult + 1;
+	int genNum(FILE *arq) {
+	    struct Conta c;
+	    int ult = 0;
+	
+	    rewind(arq);
+	    while (fread(&c, sizeof(struct Conta), 1, arq) == 1) {
+	        ult = c.numero;
+	    }
+	    return ult + 1;
 }
 
 
-int buscaC(FILE *arq, int num, struct Conta *out, long *pos) {
-    struct Conta c;
-    rewind(arq);
-    *pos = -1;
+	int buscaC(FILE *arq, int num, struct Conta *out, long *pos) {
+	    struct Conta c;
+	    rewind(arq);
+	    *pos = -1;
 
     while (fread(&c, sizeof(struct Conta), 1, arq) == 1) {
         if (c.numero == num) {
@@ -35,19 +35,19 @@ int buscaC(FILE *arq, int num, struct Conta *out, long *pos) {
     return 0;
 }
 
-int main() {
-    FILE *arq = fopen("contas.dat", "r+b");
-    if (arq == NULL) {
-        arq = fopen("contas.dat", "w+b");
-    }
+	int main() {
+	    FILE *arq = fopen("contas.dat", "r+b");
+	    if (arq == NULL) {
+	        arq = fopen("contas.dat", "w+b");
+	    }
 
-    struct Conta c, origem, destino;
-    long p1, p2;
-    int op, n1, n2;
-    float val;
-
-    char seAdm[20] = "5204";  
-    char seIn[20];            
+	    struct Conta c, origem, destino;
+	    long p1, p2;
+	    int op, n1, n2;
+	    float val;
+	
+	    char seAdm[20] = "5204";  
+	    char seIn[20];            
 
     do {
         printf("\nBem vindo ao banco de ITAMBACURI\n");
