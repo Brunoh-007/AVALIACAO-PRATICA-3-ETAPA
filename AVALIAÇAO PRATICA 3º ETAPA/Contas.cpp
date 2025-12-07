@@ -52,6 +52,8 @@
 	    char seAdm[20] = "5204";  
 	    char seIn[20];            
 
+
+	//Menu de entrada
     do {
         printf("\nBem vindo ao BANCO DE ITAMBACURI\n\n");
         printf("1 - Criar conta\n");
@@ -64,7 +66,7 @@
         printf("Escolha: ");
         scanf("%d", &op);
 
-       
+       //Aqui onde cria a conta
         if (op == 1) {
             c.numero = genNum(arq);
             c.saldo = 0;
@@ -78,7 +80,7 @@
             printf("Conta criada! Numero: %d\n", c.numero);
         }
 
-        
+        //Aqui ver o extraro da conta
         else if (op == 2) {
             printf("Numero da conta: ");
             scanf("%d", &n1);
@@ -91,7 +93,7 @@
             }
         }
 
-        
+        //Aqui onde voce faz o deposito 
         else if (op == 3) {
         	
 	            printf("Numero da conta: ");
@@ -110,12 +112,12 @@
             }
         }
 
-        
+    //Aqui onde voce faz o saque
         else if (op == 4) {
-            printf("Numero da conta: ");
+            printf("Digite o numero da conta: ");
             scanf("%d", &n1);
 
-            printf("Valor do saque: ");
+            printf("Digite o valor a sacar: ");
             scanf("%f", &val);
 
             if (buscaC(arq, n1, &c, &p1)) {
@@ -134,12 +136,12 @@
             }
         }
 
-        
+        //Aqui faz a transferencia
         else if (op == 5) {
-            printf("Conta de origem: ");
+            printf("Digite a conta de origem: ");
             scanf("%d", &n1);
 
-            printf("Conta de destino: ");
+            printf("Digite a conta destino: ");
             scanf("%d", &n2);
 
             printf("Valor da transferencia: ");
@@ -168,11 +170,11 @@
             fseek(arq, p2, SEEK_SET);
             fwrite(&destino, sizeof(struct Conta), 1, arq);
 
-            printf("Transferencia concluida!\n");
+            printf("Transferencia concluida com sucesso!\n");
         }
 
 
-        
+        //Aqui mostra a lista de contas
         else if (op == 6) {
             printf("Digite a senha: ");
             scanf("%s", seIn);
@@ -189,7 +191,8 @@
                 c.numero, c.titular, c.saldo);
             }
         }
-
+        
+	//Aqui encerra o programa 
     } while (op != 7);
 
     fclose(arq);
